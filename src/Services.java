@@ -31,8 +31,25 @@ public class Services {
 	/**
 	 * Makes the tvshows object from magnetlinks
 	 */
-	public static void makeTvShow(String[] magnetLinks) {
+	public static TvShow sortSeasons(String[] magnetLink, TvShow show) {
 
+		// Get all of the info about how many episodes and seasons there are
+		for (int i = 0; i < magnetLink.length; i++) {
+			int startPos = magnetLink[i].indexOf("&dn=") + "&dn=".length();
+			int endPos = magnetLink[i].indexOf("&tr", startPos);
+			String[] info = magnetLink[i].substring(startPos, endPos)
+					.split(".");
+			for (int j = 0; j < info.length; j++) {
+				if (info[j].charAt(0) == 'S' && info[j].charAt(3) == 'E') {
+					int season = Integer.parseInt(info[j].substring(1, 3));
+					int episode = Integer.parseInt(info[j].substring(3, 6));
+
+					show.setSeason(new Season(season)).addEpisode(
+							new Episode(magnetLink[0], episode));
+				}
+			}
+
+		}
+		return show;
 	}
-
 }

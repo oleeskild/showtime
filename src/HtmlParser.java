@@ -39,21 +39,6 @@ public class HtmlParser {
 	}
 
 	/**
-	 * Parse the episode given the parameters it needs
-	 * 
-	 * @param doc
-	 *            The document containg the show
-	 * @see getShowDoc()
-	 * @param season
-	 *            the season the episode is in
-	 * @param episode
-	 *            the episode number
-	 */
-	public static void getEpisode(Document doc, int season, int episode) {
-
-	}
-
-	/**
 	 * Get magnetlinks for a show, when given a showdoc, which you can get from
 	 * the method getShowDoc().
 	 * 

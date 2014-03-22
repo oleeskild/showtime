@@ -11,10 +11,14 @@ public class Showtime {
 		if (htmlCode.indexOf("<select name=\"SearchString\">") != -1) {
 			// Legger inn alle show og id'er
 			TvShow[] showList = Services.createShowList(htmlCode);
+			Document showDoc = HtmlParser.getShowDoc(showList[0]);
+			showList[0] = Services.sortSeasons(
+					HtmlParser.getMagnetLinks(showDoc), showList[0]);
+			System.out.println(showList[0].getSeason(1).getEpisode(1)
+					.getMagnet());
 
 		} else {
 			// this shouldn't run. If it does, update if statement
 		}
 	}
-
 }

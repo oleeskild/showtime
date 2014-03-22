@@ -1,12 +1,10 @@
 public class Episode {
 
 	String magnet;
-	String name;
-	String epNr; // episode number
+	int epNr; // episode number
 
-	public Episode(String magnet, String name, String epNr) {
+	public Episode(String magnet, int epNr) {
 		this.magnet = magnet;
-		this.name = name;
 		this.epNr = epNr;
 	}
 
@@ -14,11 +12,7 @@ public class Episode {
 		return magnet;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getEpisodeNr() {
+	public int getEpisodeNr() {
 		return epNr;
 	}
 }

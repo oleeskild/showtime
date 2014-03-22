@@ -2,9 +2,11 @@ import java.util.ArrayList;
 
 public class Season {
 
+	int seasonNumber;
 	ArrayList<Episode> episode = new ArrayList<Episode>();
 
-	public Season() {
+	public Season(int nr) {
+		seasonNumber = nr;
 	}
 
 	/**
@@ -26,5 +28,13 @@ public class Season {
 	 */
 	public Episode getEpisode(int epNr) {
 		return episode.get(epNr - 1);
+	}
+
+	public int getSeasonNr() {
+		return seasonNumber;
+	}
+
+	public int episodeLength() {
+		return episode.size();
 	}
 }
