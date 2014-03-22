@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 public class Services {
 
 	/**
@@ -37,13 +39,13 @@ public class Services {
 		for (int i = 0; i < magnetLink.length; i++) {
 			int startPos = magnetLink[i].indexOf("&dn=") + "&dn=".length();
 			int endPos = magnetLink[i].indexOf("&tr", startPos);
-			String[] info = magnetLink[i].substring(startPos, endPos)
-					.split(".");
+			String[] info = magnetLink[i].substring(startPos, endPos).split(
+					Pattern.quote("."));
+
 			for (int j = 0; j < info.length; j++) {
 				if (info[j].charAt(0) == 'S' && info[j].charAt(3) == 'E') {
 					int season = Integer.parseInt(info[j].substring(1, 3));
-					int episode = Integer.parseInt(info[j].substring(3, 6));
-
+					int episode = Integer.parseInt(info[j].substring(4, 6));
 					show.setSeason(new Season(season)).addEpisode(
 							new Episode(magnetLink[0], episode));
 				}
