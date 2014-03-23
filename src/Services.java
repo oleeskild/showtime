@@ -43,20 +43,38 @@ public class Services {
 					Pattern.quote("."));
 
 			for (int j = 0; j < info.length; j++) {
-				if (info[j].charAt(0) == 'S' && info[j].charAt(3) == 'E') {
-					int season = Integer.parseInt(info[j].substring(1, 3));
-					int episode = Integer.parseInt(info[j].substring(4, 6));
+				int season = 0;
+				int episode = 0;
 
-					if (!show.existingSeason(season)) {
-						show.setSeason(new Season(season));
-					}
-					show.getSeason(season).addEpisode(
-							new Episode(magnetLink[i], episode));
-
+				if (info[j].length() > 4 && info[j].charAt(0) == 'S'
+						&& info[j].charAt(3) == 'E') {
+					season = Integer.parseInt(info[j].substring(1, 3));
+					episode = Integer.parseInt(info[j].substring(4, 6));
+				} else if ((info[j].length() == 4) && info[j].charAt(1) == 'x') {
+					season = Integer.parseInt("" + info[j].charAt(0));
+					episode = Integer.parseInt(info[j].substring(2, 4));
+				} else if ((info[j].length() == 5) && info[j].charAt(2) == 'x') {
+					season = Integer.parseInt(info[j].substring(0, 2));
+					episode = Integer.parseInt(info[j].substring(3, 5));
 				}
+				if (!show.existingSeason(season)) {
+					show.setSeason(new Season(season));
+				}
+				show.getSeason(season).addEpisode(
+						new Episode(magnetLink[i], episode));
+
 			}
 
 		}
 		return show;
+	}
+
+	public static TvShow findShowByName(TvShow[] showList, String showName) {
+		for (int i = 0; i < showList.length; i++) {
+			if (showList[i].getName().contains(showName)) {
+				return showList[i];
+			}
+		}
+		return null;
 	}
 }

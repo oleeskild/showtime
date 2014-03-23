@@ -18,7 +18,7 @@ public class Episode implements Comparable<Episode> {
 
 	@Override
 	public String toString() {
-		return "Epideosde " + epNr;
+		return "Episode " + epNr;
 	}
 
 	@Override
