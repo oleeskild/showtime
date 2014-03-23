@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Season {
 
@@ -27,14 +28,33 @@ public class Season {
 	 * @return the episode
 	 */
 	public Episode getEpisode(int epNr) {
-		return episode.get(epNr - 1);
+		for (int i = 0; i < episode.size(); i++) {
+			if (episode.get(i).getEpisodeNr() == epNr) {
+				return episode.get(i);
+			}
+		}
+		return null;
 	}
 
 	public int getSeasonNr() {
 		return seasonNumber;
 	}
 
+	public boolean existingEpisode(int episodeNr) {
+		for (int i = 0; i < episode.size(); i++) {
+			if (episode.get(episodeNr).getEpisodeNr() == episodeNr) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public int episodeLength() {
 		return episode.size();
+	}
+
+	@Override
+	public String toString() {
+		return "Season " + seasonNumber;
 	}
 }

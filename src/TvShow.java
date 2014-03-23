@@ -39,12 +39,25 @@ public class TvShow {
 	}
 
 	public Season getSeason(int seasonNr) {
-
-		return season.get(seasonNr - 1);
+		for (int i = 0; i < season.size(); i++) {
+			if (season.get(i).getSeasonNr() == seasonNr) {
+				return season.get(i);
+			}
+		}
+		return null;
 	}
 
 	public int seasonLength() {
 		return season.size();
+	}
+
+	public boolean existingSeason(int seasonNr) {
+		for (int i = 0; i < season.size(); i++) {
+			if (season.get(i).getSeasonNr() == seasonNr) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

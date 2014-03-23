@@ -1,4 +1,4 @@
-public class Episode {
+public class Episode implements Comparable<Episode> {
 
 	String magnet;
 	int epNr; // episode number
@@ -14,5 +14,15 @@ public class Episode {
 
 	public int getEpisodeNr() {
 		return epNr;
+	}
+
+	@Override
+	public String toString() {
+		return "Epideosde " + epNr;
+	}
+
+	@Override
+	public int compareTo(Episode e) {
+		return this.getEpisodeNr() - e.getEpisodeNr();
 	}
 }

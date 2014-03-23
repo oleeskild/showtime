@@ -14,7 +14,8 @@ public class Showtime {
 			Document showDoc = HtmlParser.getShowDoc(showList[0]);
 			showList[0] = Services.sortSeasons(
 					HtmlParser.getMagnetLinks(showDoc), showList[0]);
-			System.out.println(showList[0].getSeason(1).getEpisode(1)
+			System.out.println(showList[0].getSeason(1).toString());
+			System.out.println(showList[0].getSeason(1).getEpisode(2)
 					.getMagnet());
 
 		} else {

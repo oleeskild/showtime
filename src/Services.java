@@ -46,8 +46,13 @@ public class Services {
 				if (info[j].charAt(0) == 'S' && info[j].charAt(3) == 'E') {
 					int season = Integer.parseInt(info[j].substring(1, 3));
 					int episode = Integer.parseInt(info[j].substring(4, 6));
-					show.setSeason(new Season(season)).addEpisode(
-							new Episode(magnetLink[0], episode));
+
+					if (!show.existingSeason(season)) {
+						show.setSeason(new Season(season));
+					}
+					show.getSeason(season).addEpisode(
+							new Episode(magnetLink[i], episode));
+
 				}
 			}
 
