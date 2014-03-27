@@ -1,4 +1,5 @@
 package engine;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -18,7 +19,9 @@ public class Season {
 	 *            the episode to add
 	 */
 	public void addEpisode(Episode ep) {
-		episode.add(ep);
+		if (!episode.contains(ep)) {
+			episode.add(ep);
+		}
 	}
 
 	/**

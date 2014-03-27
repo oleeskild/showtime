@@ -1,10 +1,8 @@
 package showtime;
 
-import java.io.IOException;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.internal.webkit.WebKitGTK;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.List;
@@ -141,7 +139,11 @@ public class UI {
 		// element 0 == image, element 1 == description
 		String[] tvShowInfo = selShow.getInfo();
 
-		info.setText(tvShowInfo[1]);
+		if (tvShowInfo[1] != null) {
+			info.setText(tvShowInfo[1]);
+		} else {
+			info.setText("kunne ikke finne beskrivelse");
+		}
 
 		String htmlDoc = "<html><body bgcolor=\"grey\"><img src=\""
 				+ tvShowInfo[0]
@@ -155,11 +157,12 @@ public class UI {
 		}
 
 		// Makes the season tabs
-		for (int i = 1; i < selShow.seasonLength(); i++) {
+		for (int i = selShow.seasonLength() - 1; i > 0; i--) {
 
 			CTabItem item = new CTabItem(tabFolder, SWT.CLOSE);
+
 			item.setText("Season " + (selShow.getSeasonArr()[i].getSeasonNr()));
-			final List epList = new List(tabFolder, SWT.NONE);
+			final List epList = new List(tabFolder, SWT.V_SCROLL);
 			final TvShow newShow = selShow;
 			for (int j = 0; j < selShow.getSeason(
 					selShow.getSeasonArr()[i].getSeasonNr()).episodeLength(); j++) {

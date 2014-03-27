@@ -53,15 +53,21 @@ public class Video {
 
 		browser = new Browser(shell, SWT.NONE);
 		browser.setBounds(10, 0, 777, 505);
-		// String html =
-		// "<html><head><meta content=\"width=device-width; height=device-height;\" name=\"viewport\"></head><body marginheight=\"0\" marginwidth=\"0\"><embed type=\"video/x-matroska\" src=\"http://localhost:8888/\" name=\"plugin\" height=\"100%\" width=\"100%\"></body></html>";
-		browser.setUrl("http://localhost:8888");
-		// browser.setText(html);
+		String html = "<html><head><meta content=\"width=device-width; height=device-height;\" name=\"viewport\"></head><body marginheight=\"0\" marginwidth=\"0\"><embed type=\"video/x-matroska\" src=\"http://localhost:8888/\" name=\"plugin\" height=\"100%\" width=\"100%\"></body></html>";
+		// browser.setUrl("http://localhost:8888");
+		browser.setText(html);
 	}
 
 	public void playVideo(TvShow selShow, int season, int episode) {
 		Runtime rt = Runtime.getRuntime();
 		try {
+			Process kill = rt.exec("killall node");
+			try {
+				kill.waitFor();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			Process peerflix = rt
 					.exec("peerflix "
 							+ selShow.getSeason(season).getEpisode(episode)
